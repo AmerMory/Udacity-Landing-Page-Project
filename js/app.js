@@ -17,7 +17,7 @@
  * Define Global Variables
  * 
 */
-const myNav = document.getElementsByTagName('nav');
+const myNav = document.getElementById('nav');
 const myNavUl = document.getElementById('navbar__list');
 const mySections = document.querySelectorAll('section');
 const mySectionsTitle = document.querySelectorAll('h2');
@@ -49,7 +49,29 @@ const myBtn = document.getElementById('backTop')
         myNavA.textContent = mySectionsTitle[i].innerText;
     
         myNavUl.appendChild(myNavItem);
+    };
+
+// show and hide navBar on scroll or moving mouse
+setInterval(() => {
+    if (window.pageYOffset > 100) {
+
+    myNav.style.display = 'none';
     }
+}, 3500);
+
+
+window.addEventListener('scroll', function () {
+    myNav.style.display = 'block'
+    
+});
+
+window.addEventListener('mousemove', function () {
+    myNav.style.display = 'block'
+    
+});
+
+    
+
 
 
 // Add class 'active' to section when near top of viewport
@@ -109,14 +131,4 @@ var scroll = new SmoothScroll('a[href*="#"]', {
 
 /**
  * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
-
-
+**/
