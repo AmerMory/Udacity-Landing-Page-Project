@@ -52,6 +52,7 @@ const myBtn = document.getElementById('backTop')
     
         myNavUl.appendChild(myNavItem);
 
+// Scroll to selected section
         myAnc[i].addEventListener('click', e => {
             e.preventDefault();
             mySections[i].scrollIntoView({behavior: 'smooth', block: "start",})
