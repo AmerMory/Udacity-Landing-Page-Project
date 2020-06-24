@@ -24,6 +24,8 @@ const mySectionsTitle = document.querySelectorAll('h2');
 const myAnc = document.getElementsByClassName('linke');
 const myBtn = document.getElementById('backTop')
 
+
+
 /**
  * End Global Variables
 
@@ -49,6 +51,12 @@ const myBtn = document.getElementById('backTop')
         myNavA.textContent = mySectionsTitle[i].innerText;
     
         myNavUl.appendChild(myNavItem);
+
+        myAnc[i].addEventListener('click', e => {
+            e.preventDefault();
+            mySections[i].scrollIntoView({behavior: 'smooth', block: "start",})
+        })
+        
     };
 
 // show and hide navBar on scroll or moving mouse
@@ -81,8 +89,8 @@ for (let i = 0; i < mySections.length; i++) {
     let sectionStart = mySections[i].offsetTop;
     let sectionEnd = sectionStart + mySections[i].offsetHeight;
     let sectionCord = {
-        "start": sectionStart,
-        "end": sectionEnd
+        "start": sectionStart - 8,
+        "end": sectionEnd - 8
     }
     sectionCords.push(sectionCord);
 }
@@ -91,9 +99,9 @@ window.addEventListener('scroll', event=>{
     let pageY = window.pageYOffset;
     for(let i = 0; i < sectionCords.length; i++) {
         let sectionCord = sectionCords[i];
-        if(pageY >= sectionCord.start && pageY < sectionCord.end) {
+        if(pageY >= sectionCord.start && pageY <= sectionCord.end) {
             //loop through mySections array and remove class from elements
-            for(let j = 0; j < mySections.length; j++) {
+          for(let j = 0; j < mySections.length; j++) {
                 mySections[j].classList.remove('your-active-class');
                 myAnc[j].classList.remove('active-linke')
             }
@@ -120,14 +128,6 @@ window.addEventListener('scroll', function () { // show and hide scroll top butt
         myBtn.style.display = 'none'
     }
 })
-
-
-
-// Scroll to anchor ID
-var scroll = new SmoothScroll('a[href*="#"]', {
-    speed: 900,
-    easing: 'easeInOutCubic',
-});
 
 /**
  * End Main Functions
